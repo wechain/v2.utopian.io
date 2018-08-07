@@ -1,12 +1,11 @@
-u-layout-page.u-page-details(:meta="false")
-  div.top-contributors
-    span.q-title.uppercase top contributors
-    q-list(separator).row
-      q-item(v-for="contributor in contributors" :key="contributor.key").col-12
-        q-item-side(:avatar="'https://img.blocker.press/a/' + contributor.key")
-        q-item-main
-          q-item-tile.row.items-center(label) {{ contributor.key }}
-          q-item-tile(sublabel) {{ contributor.doc_count }} contributions
+div.top-contributors
+  span.q-title.uppercase top contributors
+  q-list(separator).row
+    q-item(v-for="contributor in contributors" :key="contributor.key").col-12
+      q-item-side(:avatar="'https://img.blocker.press/a/' + contributor.key")
+      q-item-main
+        q-item-tile.row.items-center(label) {{ contributor.key }}
+        q-item-tile(sublabel) {{ contributor.doc_count }} contributions
     //-   //- q-item.col-12
       //-   q-item-main.row
       //-     q-btn.col-12(color="primary") see all
