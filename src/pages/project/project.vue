@@ -10,13 +10,6 @@ export default {
       ]),
       project: {},
       loading: false
-      // contributors: [
-      //   { id: 1, name: 'icaro', numberOfContributions: 17 },
-      //   { id: 2, name: 'hernandev', numberOfContributions: 23 },
-      //   { id: 3, name: 'elear', numberOfContributions: 12 },
-      //   { id: 4, name: 'espoem', numberOfContributions: 91 },
-      //   { id: 5, name: 'mkt', numberOfContributions: 21 }
-      // ],
       // taskRequests: [
       //   { id: 1, category: 'development', title: 'Fetch posts from Steem blockchain' },
       //   { id: 2, category: 'graphics', title: 'New logo for eSteem' },

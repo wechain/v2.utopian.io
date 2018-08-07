@@ -48,7 +48,7 @@ div
     q-route-tab(:to="`/project/${project.id}/details`" name="tab-details" append label="Details" slot="title" exact)
     q-route-tab(:to="`/project/${project.id}/updates`" name="tab-updates" append label="Updates" slot="title" exact disabled)
     q-route-tab(:to="`/project/${project.id}/task`" name="tab-task-requests" append label="Task Requests" slot="title" exact disabled)
-    // q-route-tab(:to="`/project/${project.id}/contributors`" name="tab-contributors" append label="Contributors" slot="title" exact disabled)
+    q-route-tab(:to="`/project/${project.id}/contributors`" name="tab-contributors" append label="Contributors" slot="title" exact)
     // q-route-tab(:to="`/project/${project.id}/sponsors`" name="tab-sponsors" append label="Sponsors" slot="title" exact disabled)
 
 
@@ -68,22 +68,5 @@ div
     //-           q-item-main.row
     //-             q-btn.col-12(color="primary") see all
 
-    //-     div.top-contributors
-    //-       span.q-title.uppercase top contributors
-    //-       q-list(separator).row
-    //-         q-item(v-for="contributor in contributors" :key="contributor.id").col-12
-    //-           q-item-side(:avatar="'https://img.blocker.press/a/' + contributor.name")
-    //-           q-item-main
-    //-             q-item-tile.row.items-center(label) {{ contributor.name }}
-    //-             q-item-tile(sublabel) {{ contributor.numberOfContributions }} contributions
-    //-         q-item.col-12
-    //-           q-item-main.row
-    //-             q-btn.col-12(color="primary") see all
-
     template(slot="main")
       router-view(v-if="project.details", :details="project.details")
-
-
-
-
-

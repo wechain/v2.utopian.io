@@ -48,6 +48,7 @@ export default [
         children: [
           {path: 'details', name: 'project.details', component: () => import('src/pages/project/details/details')},
           {path: 'contributions', name: 'project.contributions', component: () => import('src/pages/project/contributions/contributions')},
+          {path: 'contributors', name: 'project.contributors', component: () => import('src/pages/project/contributors/contributors')},
           {path: 'tasks', name: 'project.tasks', component: () => import('src/pages/project/tasks/tasks')}
         ]
       },
