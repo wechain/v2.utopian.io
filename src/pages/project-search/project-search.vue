@@ -73,7 +73,7 @@ export default {
     // load posts main method.
     async loadProjects (done) {
       const listProjects = firebase.functions().httpsCallable(`api/projects/list?q=${this.search}&openSource=${this.opensource}`)
-      this.projects = (await listProjects()).data.map(project => project.data)
+      this.projects = (await listProjects()).data.map(project => project)
       if (this.projects.length < 10) {
         attempt(done)
         this.$refs.infiniteScroll.stop()
