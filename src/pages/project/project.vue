@@ -9,13 +9,19 @@ export default {
         'account'
       ]),
       project: {},
-      loading: false
+      loading: false,
       // taskRequests: [
       //   { id: 1, category: 'development', title: 'Fetch posts from Steem blockchain' },
       //   { id: 2, category: 'graphics', title: 'New logo for eSteem' },
       //   { id: 3, category: 'development', title: 'Create new date picker' },
       //   { id: 4, category: 'blog', title: 'New blog post for eSteem' }
       // ]
+      contributors: [
+        { id: 1 },
+        { id: 2 },
+        { id: 3 },
+        { id: 4 }
+      ]
     }
   },
   filters: {
