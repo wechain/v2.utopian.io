@@ -201,10 +201,9 @@ export default {
 
       return userPermision === 'admin'
     },
-    selectGithubRepo (repo) {
-      this.project.githubRepository = repo
-      this.$refs.autocomplete.setValue(repo)
-      this.checkProjectOwner()
+    async selectGithubRepo (repo) {
+      this.updateFormPercentage('platforms')
+      this.isAllowed = await this.checkProjectOwner()
     },
     splitTags () {
       const vm = this
@@ -287,13 +286,6 @@ export default {
       'github'
     ])
 
-  },
-  watch: {
-    // async github () {
-    //   if (this.github.username) {
-    //     this.isAllowed = await this.checkProjectOwner()
-    //   }
-    // }
   },
   async mounted () {
     this.gh = new GitHub()

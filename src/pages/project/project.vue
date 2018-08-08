@@ -38,7 +38,7 @@ export default {
       this.loading = false
     },
     goToRepo () {
-      window.open(`https://github.com/${this.project.platforms.github.repository}`, '_blank')
+      window.open(this.project.platforms.github.repository, '_blank')
     },
     contribute () {
       return this.$router.push({ name: 'create' })

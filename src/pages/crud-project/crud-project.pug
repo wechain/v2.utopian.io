@@ -24,7 +24,7 @@ u-layout-page.u-page-crud-project(reverse=true)
           div.col-12
             q-field(label="Github Repository", orientation="vertical", :error="$v.project.platforms.$error")
               q-search(v-model="project.platforms.github.repository", placeholder="e.g dtube/dtube",
-                icon="mdi-github-circle", :disable="closedSource", @blur="updateFormPercentage('platforms')")
+                icon="mdi-github-circle", :disable="closedSource", @blur="selectGithubRepo")
                 q-autocomplete(@search="searchGithubRepos", :min-characters="3", ref="autocomplete",
                   :debounce="500", separator)
               q-checkbox(v-model.boolean="closedSource", label="My project is not Open Source",
