@@ -19,7 +19,7 @@ q-toolbar.u-toolbar(color='tertiary', :class="{ desktop: isDesktop }")
       // login button.
       // q-btn(@click="startPopup", label="Login")
       // q-btn(@click="loginWithGithub", label="Login Github")
-      q-btn(@click.native="startPopup", label="Login")
+      q-btn(@click.native="startLoginPopup", label="Login")
 
     // right side menu items for users.
     div.u-toolbar-right.u-toolbar-right-user(v-if="!guest")

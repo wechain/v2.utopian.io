@@ -1,6 +1,6 @@
 // imports.
 import { client } from './client'
-import open from './popup'
+import open from '../../common/popup'
 
 // redirect to login page.
 export const redirectToLogin = () => {

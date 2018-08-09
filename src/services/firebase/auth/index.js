@@ -1,13 +1,27 @@
-// import firebase app.
 import firebase from 'firebase/app'
+import { Loading, Dialog } from 'quasar'
+import { getProvider } from 'src/services/firebase/providers/github'
 
-// get current user directly from firebase.
 export const getCurrentUser = () => firebase.auth().currentUser
 
-// unlink a given provider.
 export const unlinkProvider = (currentUser, providerId) => {
-  // call unlink.
   return currentUser.unlink(providerId)
-    // avoid triggering errors on the unlink process.
     .catch(() => Promise.resolve(true))
+}
+
+export const githubLogin = () => {
+  Loading.show({
+    message: 'Waiting for GitHub authorization'
+  })
+  firebase.auth().signInWithPopup(getProvider()).then((result) => {
+    console.log(result)
+  }).catch(e => {
+    console.log(e)
+    Dialog.create({
+      title: 'Login Error',
+      message: 'An error occurred while trying to authenticate your GitHub account.'
+    })
+  }).finally(() => {
+    Loading.hide()
+  })
 }

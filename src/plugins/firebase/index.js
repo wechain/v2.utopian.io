@@ -11,7 +11,7 @@ import 'firebase/functions'
 // import the configuration builder for firebase.
 import config from './config'
 // import the authentication configurator.
-import configureAuth from './auth'
+// import configureAuth from './auth'
 // import the firebase configurator.
 import configureFirestore from './firestore'
 // import storage configuration.
@@ -32,7 +32,7 @@ export default ({ store, Vue }) => {
   Vue.prototype.firebase = firebaseApp
   window.firebase = firebaseApp
   // configure authentication.
-  configureAuth(firebaseApp, store)
+  // configureAuth(firebaseApp, store)
 
   // configure firestore.
   configureFirestore(firebaseApp, Vue)

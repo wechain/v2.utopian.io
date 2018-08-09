@@ -4,15 +4,13 @@
  * @param {firebase.app.App}  firebase  Firebase application instance to configure.
  * @param {Store}             store     Vuex store instance.
  */
+/*
 const configureAuth = (firebase, store) => {
   // when firebase changes the authentication state, do the following actions.
   firebase.auth().onAuthStateChanged((user) => {
-    // commit the currently github authenticated user on Vuex store.
     store.commit('auth/setUser', (user || null))
-
-    // if an UID is present (user is logged in).
+    console.log(user)
     if ((user && user.uid)) {
-      // dispatch the account loading method, passing the actual UID.
       store.dispatch('auth/loadFirebaseAccount', (user.uid))
     }
   })
@@ -20,3 +18,4 @@ const configureAuth = (firebase, store) => {
 
 // default export the auth configure function.
 export default configureAuth
+*/

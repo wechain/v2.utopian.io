@@ -1,26 +1,16 @@
-<!-- component script -->
 <script>
-// imports.
 import { mapGetters, mapActions } from 'vuex'
 import { popupLogin } from 'src/services/steem/connect/auth'
+import { githubLogin } from 'src/services/firebase/auth'
 
-// layout toolbar component.
 export default {
-
-  // component name.
   name: 'u-layout-toolbar',
-
-  // component data.
   data () {
     return {
       overlay: null
     }
   },
-
-  // computed properties.
   computed: {
-
-    // auth store getters.
     ...mapGetters('auth', [
       'guest',
       'user',
@@ -31,35 +21,27 @@ export default {
       'avatar',
       'githubGuest'
     ]),
-
-    // common store getters.
     ...mapGetters('common', [
       'isMobile',
       'isDesktop'
     ]),
-
     createLabel () {
       return this.isDesktop ? 'Contribution' : ''
     }
   },
-
-  // component methods.
   methods: {
-
     ...mapActions([
       'showDialog',
       'startLoading',
       'updateLoading',
       'stopLoading'
     ]),
-
     ...mapActions('auth', [
       'logout',
       'login',
       'logoutFromSteem',
       'linkGithubAccount'
     ]),
-
     startGithubLink () {
       // start the loading overlay.
       this.startLoading('Linking Github Account...')
@@ -75,7 +57,9 @@ export default {
           this.stopLoading()
         })
     },
-
+    startLoginPopup () {
+      githubLogin()
+    },
     startPopup () {
       // start the loading overlay.
       this.startLoading('Awaiting authorization...')
