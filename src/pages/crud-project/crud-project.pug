@@ -43,9 +43,15 @@ u-layout-page.u-page-crud-project(reverse=true)
         div.row.row-fields.general
           div.col-12
             q-field(label="License*", orientation="vertical")
-              q-select(label="License", v-model="project.license", :error="$v.project.license.$error",
-                placeholder="MIT", :options="licenseOptions", :before="[{ icon: 'mdi-file-outline' }]", filter,
-                autofocus-filter, @blur="updateFormPercentage('license')")
+              u-select-license(
+                @blur="updateFormPercentage('license')"
+                @input="selectLicense"
+                :error="$v.project.license.$error"
+              )
+
+              //- q-select(label="License", v-model="project.license", ,
+              //-   placeholder="MIT", :options="licenseOptions", :before="[{ icon: 'mdi-file-outline' }]", filter,
+              //-   autofocus-filter, )
 
         div.row.row-fields.files
           div.col-12
