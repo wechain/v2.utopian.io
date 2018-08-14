@@ -14,18 +14,16 @@ export const check = ({ user }) => !guest({ user })
 export const user = ({ user }) => user
 
 // user UID (Firebase).
-export const uid = ({ user }) => get(user, 'uid', null)
+export const uid = ({ user }) => get(user, 'name', null)
 
 // username (also UID).
 export const username = uid
 
 // name (real or username).
-export const name = ({ user }) => get(user, 'displayName', null)
+export const displayName = ({ user }) => get(user, 'displayName', null)
 
-// user photo url.
-export const photoURL = ({ user }) => get(user, 'photoURL', null)
 // avatar alias for the photo url getter.
-export const avatar = photoURL
+export const avatar = ({ user }) => get(user, 'avatar', null)
 
 // account data.
 export const account = ({ account }) => account

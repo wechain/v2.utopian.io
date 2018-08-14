@@ -17,7 +17,7 @@ export default {
       'account',
       'github',
       'githubUsername',
-      'username',
+      'displayName',
       'avatar',
       'githubGuest'
     ]),
