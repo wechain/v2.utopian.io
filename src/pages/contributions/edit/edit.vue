@@ -2,7 +2,7 @@
 // imports.
 import ULayoutPage from 'src/layouts/parts/page/page'
 // import { required } from 'vuelidate/lib/validators'
-import UFileUploader from 'src/components/project/file-uploader/file-uploader'
+import UFileUploader from 'src/components/form/file-uploader'
 import { mapActions } from 'vuex'
 import { get, map } from 'lodash'
 import ace from 'brace'

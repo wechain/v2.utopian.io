@@ -173,6 +173,9 @@ export default {
       this.$refs.autocomplete.setValue(repo)
       this.checkProjectOwner()
     },
+    selectLicense (license) {
+      this.project.license = license
+    },
     splitTags () {
       const vm = this
       if (vm.project.tags.length === 1) {

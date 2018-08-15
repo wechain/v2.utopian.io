@@ -8,7 +8,8 @@
     filter,
     autofocus-filter,
     @blur="handleBlur",
-    @input="handleInput"
+    @input="handleInput",
+    v-model="selectedLicense"
   )
 </template>
 
@@ -23,6 +24,7 @@ export default {
   props: ['onError'],
   data () {
     return {
+      selectedLicense: '',
       icons: [{ icon: 'mdi-file-outline' }],
       licenseOptions: [
         { label: 'Academic Free License v3.0', value: 'afl-3.0' },
