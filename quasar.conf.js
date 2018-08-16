@@ -142,7 +142,8 @@ module.exports = function (ctx) {
         'QToolbarTitle',
         'QTooltip',
         'QUploader',
-        'QVideo'
+        'QVideo',
+        'QWindowResizeObservable'
       ],
       directives: [
         'Ripple',

@@ -88,7 +88,12 @@ u-layout-page.u-page-crud-project(reverse=true)
               )
 
   template(slot="meta")
-    div.side-box.fixed(v-bind:class="scrolledEnough ? 'scroll-bottom' : 'scroll-top'", ref="sideBox", v-if="(isEditing && isAllowed) || !this.isEditing")
+    div.side-box.fixed(
+      id="sideBox"
+      ref="sideBox",
+      v-if="((isEditing && isAllowed) || !this.isEditing) && isMounted"
+    )
+      q-window-resize-observable(@resize="setSideBoxWidth")
       q-list(separator).row
         q-item.col-12
           q-item-main

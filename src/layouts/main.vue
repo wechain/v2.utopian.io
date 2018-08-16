@@ -73,6 +73,10 @@ q-layout.u-layout.q-layout-wallet(view='lHh Lpr lFf')
 // default variable import.
 @import "~variables"
 
+.q-layout {
+  top 50px
+}
+
 body
   background-color: $grey-1
 

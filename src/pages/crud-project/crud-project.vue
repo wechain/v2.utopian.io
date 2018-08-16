@@ -4,7 +4,6 @@ import ULayoutPage from 'src/layouts/parts/page/page'
 import UFileUploader from 'src/components/form/file-uploader'
 import USelectLicense from 'src/components/form/select-license'
 
-import * as GitHub from '@octokit/rest'
 import { required, minLength } from 'vuelidate/lib/validators'
 import { mapGetters, mapActions } from 'vuex'
 import firebase from 'firebase/app'
@@ -32,18 +31,10 @@ export default {
         'username'
       ]),
 
-      // github placeholder.
-      gh: {},
-
-      // github repositories.
-      ghRepos: [],
-
-      // used to set the sidebox position
-      scrolledEnough: false,
-
       formPercentage: 0,
 
       isAllowed: false,
+      isMounted: false,
 
       // project internal data.
       project: {
@@ -205,9 +196,6 @@ export default {
       return this.project.platforms.github.repository
         ? this.project.platforms.github.repository : `${this.username()}/${this.slugify(this.project.name)}`
     },
-    userHasScrolled (ev) {
-      this.scrolledEnough = ev.position >= 50
-    },
     updateFormPercentage (field) {
       this.$v.project[field].$touch()
       const fields = Object.keys(this.$v.project.$params)
@@ -239,6 +227,14 @@ export default {
           
           this.project.tags = Object.values(this.project.tags)
         })
+    },
+    setSideBoxWidth () {
+      console.log(this.$refs.sideBox, document.getElementById('sideBox'))
+      if (document.getElementById('sideBox') && this.$refs.sideBox) {
+        document
+          .getElementById('sideBox')
+          .setAttribute('style', `width: ${this.$refs.sideBox.parentNode.clientWidth}px`)
+      }
     }
   },
   computed: {
@@ -252,22 +248,13 @@ export default {
     },
     isEditing () {
       return this.$route.params.name
-    },
-    ...mapGetters('auth', [
-      'github'
-    ])
-
-  },
-  watch: {
-    // async github () {
-    //   if (this.github.username) {
-    //     this.isAllowed = await this.checkProjectOwner()
-    //   }
-    // }
+    }
   },
   async mounted () {
-    this.gh = new GitHub()
-    this.$parent.$parent.$on('scroll', this.userHasScrolled)
+    this.isMounted = true
+    this.$nextTick(() => {
+      this.setSideBoxWidth()
+    })
 
     if (this.isEditing) {
       try {
