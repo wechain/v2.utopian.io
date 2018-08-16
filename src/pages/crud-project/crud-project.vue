@@ -25,10 +25,14 @@ export default {
   // component data.
   data () {
     return {
-      // map project store getters.
       ...mapGetters('auth', [
         'account',
         'username'
+      ]),
+
+      ...mapGetters('common', [
+        'isMobile',
+        'isDesktop'
       ]),
 
       formPercentage: 0,

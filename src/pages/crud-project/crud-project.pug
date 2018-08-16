@@ -88,10 +88,11 @@ u-layout-page.u-page-crud-project(reverse=true)
               )
 
   template(slot="meta")
-    div.side-box.fixed(
+    div.side-box(
       id="sideBox"
       ref="sideBox",
       v-if="((isEditing && isAllowed) || !this.isEditing) && isMounted"
+      :class="{ fixed: isDesktop }"
     )
       q-window-resize-observable(@resize="setSideBoxWidth")
       q-list(separator).row

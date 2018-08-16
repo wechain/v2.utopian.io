@@ -46,10 +46,10 @@ export default {
 <!-- component template. -->
 <template lang="pug">
 // layout wrapper.
-q-layout.u-layout.q-layout-wallet(view='lHh Lpr lFf')
+q-layout.u-layout.q-layout-wallet(view='HHH lpr fFf')
 
   // layout main header.
-  q-layout-header.layout-header(reveal)
+  q-layout-header.layout-header
     // toolbar (navbar).
     u-layout-toolbar
 
@@ -72,10 +72,6 @@ q-layout.u-layout.q-layout-wallet(view='lHh Lpr lFf')
 <style lang="stylus">
 // default variable import.
 @import "~variables"
-
-.q-layout {
-  top 50px
-}
 
 body
   background-color: $grey-1
