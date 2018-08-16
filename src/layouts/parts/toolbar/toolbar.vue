@@ -1,6 +1,6 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { popupLogin } from 'src/services/steem/connect/auth'
+import { openSteemConnectLogin } from 'src/services/steem/connect/auth'
 import { githubLogin } from 'src/services/firebase/auth'
 
 export default {
@@ -14,12 +14,10 @@ export default {
     ...mapGetters('auth', [
       'guest',
       'user',
-      'account',
-      'github',
-      'githubUsername',
       'displayName',
       'avatar',
-      'githubGuest'
+      'hasCredential',
+      'getCredentialAccountName'
     ]),
     ...mapGetters('common', [
       'isMobile',
@@ -33,56 +31,30 @@ export default {
     ...mapActions([
       'showDialog',
       'startLoading',
-      'updateLoading',
       'stopLoading'
     ]),
     ...mapActions('auth', [
       'logout',
-      'login',
-      'logoutFromSteem',
-      'linkGithubAccount'
+      'linkSteemAccount'
     ]),
-    startGithubLink () {
-      // start the loading overlay.
-      this.startLoading('Linking Github Account...')
-      // call the popup for steem connect authorization.
-      return this.linkGithubAccount()
-        // handle errors.
-        .catch((e) => {
-          this.showDialog({ title: 'Oops', 'message': 'Error while linking Github Account.' })
-        })
-        // finish by stop loading.
-        .finally(() => {
-          // finish loading.
-          this.stopLoading()
-        })
-    },
-    startLoginPopup () {
+    startGithubLogin () {
       githubLogin()
     },
-    startPopup () {
-      // start the loading overlay.
+    startSteemConnectLogin () {
       this.startLoading('Awaiting authorization...')
-      // call the popup for steem connect authorization.
-      return popupLogin()
-        // handle success.
+      return openSteemConnectLogin()
         .then((result) => {
-          // update the loading message to "processing".
           this.startLoading('Processing login...')
-          // use the authorization callback to log the user in.
-          return this.login(result)
+          return this.linkSteemAccount(result)
         })
-        // handle errors.
         .catch((e) => {
+          console.log(e)
           this.showDialog({ title: 'Oops', 'message': 'An error occurred while trying to authenticate.' })
         })
-        // finish by stop loading.
         .finally(() => {
-          // finish loading.
           this.stopLoading()
         })
     },
-    // redirect to create route.
     redirectToCreate () {
       return this.$router.push({ name: 'create' })
     }
@@ -90,8 +62,5 @@ export default {
 }
 </script>
 
-<!-- component template. -->
 <template src="./toolbar.pug" lang="pug"></template>
-
-<!-- component styles. -->
 <style src="./toolbar.styl" lang="stylus"></style>
