@@ -7,7 +7,6 @@
  * @param {firebase.app.App}  firebase  Firebase application instance to configure.
  * @param {Store}             store     Vuex store instance.
  */
-
 const configureAuth = (firebase, store) => {
   firebase.auth().onAuthStateChanged(async (user) => {
     if (user && user.uid) {
