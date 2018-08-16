@@ -17,9 +17,14 @@ const configureAuth = (firebase, store) => {
         displayName: response.data.displayName,
         photoURL: response.data.photoURL
       })
-      store.dispatch('prepareEncryption')
-        .then(() => store.dispatch('auth/loadCredentials', null, { root: true }))
-        .catch(() => {})
+      await store.dispatch('prepareEncryption')
+      await store.dispatch('auth/loadCredentials', null, { root: true })
+      try {
+        const client = await store.dispatch('steem/prepareClient')
+        client.me().then(async user => store.dispatch('steem/setUserDetails', user))
+      } catch (e) {
+        console.log(e)
+      }
     }
   })
 }

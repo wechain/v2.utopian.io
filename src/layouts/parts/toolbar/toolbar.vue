@@ -23,6 +23,10 @@ export default {
       'isMobile',
       'isDesktop'
     ]),
+    ...mapGetters('steem', [
+      'steemUser'
+    ]),
+
     createLabel () {
       return this.isDesktop ? 'Contribution' : ''
     }
@@ -48,7 +52,6 @@ export default {
           return this.linkSteemAccount(result)
         })
         .catch((e) => {
-          console.log(e)
           this.showDialog({ title: 'Oops', 'message': 'An error occurred while trying to authenticate.' })
         })
         .finally(() => {

@@ -18,6 +18,7 @@ export const loadCredentials = async ({ getters, commit }) => {
   }
   return Promise.resolve()
 }
+export const getCredential = ({ state }, name) => state.credentials.find(credential => credential.name === name)
 
 export const deleteCredential = ({ commit }, name) => {
   return credentialsModel.remove(name)
@@ -31,6 +32,9 @@ export const linkSteemAccount = ({ dispatch, commit }, steemConnectData) => {
   if (!steemConnectData) return
   const data = parseSteemConnectCallback(steemConnectData)
   return dispatch('storeCredentials', data)
+    .then(() => dispatch('prepareClient')
+      .then((client) => client.me())
+      .then(user => console.log(user)))
 }
 
 export const logout = ({ dispatch, commit }) => {
