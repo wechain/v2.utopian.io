@@ -32,13 +32,16 @@ export const linkSteemAccount = ({ dispatch, commit }, steemConnectData) => {
   if (!steemConnectData) return
   const data = parseSteemConnectCallback(steemConnectData)
   return dispatch('storeCredentials', data)
-    .then(() => dispatch('prepareClient')
+    .then(() => dispatch('steem/prepareClient', null, { root: true })
       .then((client) => client.me())
-      .then(user => console.log(user)))
+      .then(user => dispatch('steem/setUserDetails', user, { root: true })))
 }
 
 export const logout = ({ dispatch, commit }) => {
   return firebase.auth().signOut()
-    .then(() => commit('clear'))
-    .then(() => credentialsModel.clear())
+    .then(async () => {
+      await commit('clear')
+      await dispatch('steem/setUserDetails', null, { root: true })
+      await credentialsModel.clear()
+    })
 }
