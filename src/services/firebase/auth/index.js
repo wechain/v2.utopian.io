@@ -7,7 +7,13 @@ export const githubLogin = async () => {
     message: 'Waiting for GitHub authorization'
   })
   try {
-    await firebase.auth().signInWithPopup(getProvider())
+    const authResult = await firebase.auth().signInWithPopup(getProvider())
+    const login = firebase.functions().httpsCallable('api/auth/login')
+    const user = {
+      name: authResult.additionalUserInfo.username,
+      uid: authResult.user.uid
+    }
+    await login(user)
   } catch (e) {
     if (e.code !== 'auth/popup-closed-by-user') {
       Dialog.create({
